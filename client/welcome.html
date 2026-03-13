@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Area Riservata</title>
+
+    <script>
+      const hashString = window.location.hash.substring(1); // toglie il '#'
+      const parametriHash = new URLSearchParams(hashString);
+      const tokenDaUrl = parametriHash.get("token");
+
+      if(tokenDaUrl){
+        localStorage.setItem("jwt", tokenDaUrl);
+      
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
+      const tokenSalvato = localStorage.getItem("jwt")
+
+      if(!tokenSalvato){
+        window.location.replace("index.html")
+      }
+
+      function eseguiLogout() {
+        localStorage.removeItem("jwt"); // Distrugge il pass di sicurezza
+        window.location.replace("index.html"); // Ti sbatte fuori
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Login riuscito!</h2>
+    <p>Benvenuto nella tua area riservata!</p>
+
+    <button class="logout-btn" onclick="eseguiLogout()">Esci (Logout)</button>
+  </body>
+</html>
