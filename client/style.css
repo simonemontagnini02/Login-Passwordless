@@ -16,7 +16,7 @@ body {
   z-index: 1000;
   left: 50%;
   bottom: 30px;
-  transform: translateX(-50%); /* Lo centra perfettamente */
+  transform: translateX(-50%);
   font-size: 16px;
   opacity: 0;
   transition: opacity 0.3s, bottom 0.3s;
@@ -26,9 +26,9 @@ body {
 #toast.show {
   visibility: visible;
   opacity: 1;
-  bottom: 50px; /* Effetto scivolamento verso l'alto */
+  bottom: 50px;
 }
 
 
-#toast.success { background-color: #4CAF50; } /* Verde */
-#toast.error { background-color: #e74c3c; } /* Rosso */
+#toast.success { background-color: #4CAF50; }
+#toast.error { background-color: #e74c3c; }

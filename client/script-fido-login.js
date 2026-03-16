@@ -8,7 +8,7 @@ loginBtn.addEventListener("click", async () => {
     return;
   }
 
-  // 1. Chiedi opzioni al server
+  // 1. Chiedo opzioni al server
   const optionsRes = await fetch("http://localhost:3000/fido/login/options", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ loginBtn.addEventListener("click", async () => {
     return;
   }
 
-  // Converti challenge
+  // Converto challenge
   options.challenge = base64urlToBuffer(options.challenge);
 
   options.allowCredentials = options.allowCredentials.map(cred => ({
@@ -32,7 +32,7 @@ loginBtn.addEventListener("click", async () => {
     id: base64urlToBuffer(cred.id)
   }));
 
-  // 2. Richiedi autenticazione
+  // 2. Richiedo autenticazione
   const assertion = await navigator.credentials.get({
     publicKey: options
   });
@@ -51,7 +51,7 @@ loginBtn.addEventListener("click", async () => {
     }
   };
 
-  // 3. Invia al server
+  // 3. Invio al server
   const verifyRes = await fetch("http://localhost:3000/fido/login/verify", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -71,7 +71,7 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
-// ===== FUNZIONI UTILI =====
+// ===== UTILITY FUNCTIONS =====
 function bufferToBase64url(buffer) {
   return btoa(String.fromCharCode(...new Uint8Array(buffer)))
     .replace(/\+/g, "-")

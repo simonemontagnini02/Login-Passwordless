@@ -1,7 +1,7 @@
 function mostraToast(messaggio, tipo = "success") {
   const toast = document.getElementById("toast");
   
-  // Imposta il testo e il colore
+  // Imposto il testo e il colore
   toast.innerText = messaggio;
   toast.className = `show ${tipo}`; // Aggiunge 'show' e 'success' o 'error'
 

@@ -8,7 +8,7 @@ registerBtn.addEventListener("click", async () => {
     return;
   }
 
-  // 1. Chiedi al server le opzioni
+  // 1. Chiedo al server le opzioni
   const optionsRes = await fetch("http://localhost:3000/fido/register/options", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -23,16 +23,16 @@ registerBtn.addEventListener("click", async () => {
     return;
   }
 
-  // Converti challenge e userID in ArrayBuffer
+  // Converto challenge e userID in ArrayBuffer
   options.challenge = base64urlToBuffer(options.challenge);
   options.user.id = base64urlToBuffer(options.user.id);
 
-  // 2. Crea credenziale
+  // 2. Creo credenziale
   const credential = await navigator.credentials.create({
     publicKey: options
   });
 
-  // 3. Invia risposta al server
+  // 3. Invio risposta al server
   const attestationResponse = {
     id: credential.id,
     rawId: bufferToBase64url(credential.rawId),
@@ -62,7 +62,7 @@ registerBtn.addEventListener("click", async () => {
   }
 });
 
-// ===== FUNZIONI UTILI =====
+// ===== UTILITY FUNCTIONS =====
 function bufferToBase64url(buffer) {
   return btoa(String.fromCharCode(...new Uint8Array(buffer)))
     .replace(/\+/g, "-")
