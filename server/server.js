@@ -224,6 +224,7 @@ app.post("/fido/login/verify", async (req, res) => {
   }
 
   credential.signCount = verification.authenticationInfo.newCounter;
+  user.currentChallenge = undefined;
   await user.save();
 
   // CREAZIONE TOKEN FIRMATO CON JWT_SECRET
