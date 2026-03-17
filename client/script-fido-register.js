@@ -42,16 +42,12 @@ registerBtn.addEventListener("click", async () => {
       clientDataJSON: bufferToBase64url(credential.response.clientDataJSON)
     }
   };
-
-  console.log("attestationResponse da inviare al server:", attestationResponse);
     
   const verifyRes = await fetch("http://localhost:3000/fido/register/verify", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, attestationResponse })
   });
-
-  console.log("OPTIONS dal server:", JSON.stringify(options, null, 2));
 
   const result = await verifyRes.json();
 
